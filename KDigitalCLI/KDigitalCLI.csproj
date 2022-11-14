@@ -5,6 +5,31 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <!--Update this for production and preview releases-->
+        <Version>1.0.0-preview.1</Version>
+
+        <!--Update this for production and preview releases-->
+        <FileVersion>1.0.0-preview.1</FileVersion>
+
+        <!--
+            DO NOT UPDATE THIS FOR PREVIEW RELEASES!!
+            Visual Studio does not allow the preview syntax for this tag
+            Example: v1.2.3.preview.1 is not allowed
+        -->
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+
+
+    <!--    <ApplicationIcon>kdcli-logo.ico</ApplicationIcon>-->
+        <PackageId>KinsonDigital.CICD</PackageId>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <Authors>Calvin Wilkinson</Authors>
+        <Company>Kinson Digital</Company>
+        <Product>CICD</Product>
+        <Description>CICD application for running builds, tests, and status checks for the KinsonDigital organization projects.</Description>
+        <Copyright>Copyright ©2022 Kinson Digital</Copyright>
+    <!--    <PackAsTool>true</PackAsTool>-->
+        <ToolCommandName>kd</ToolCommandName>
+        <NoWarn>7035</NoWarn>
     </PropertyGroup>
 
 </Project>

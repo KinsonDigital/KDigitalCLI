@@ -32,4 +32,9 @@
         <NoWarn>7035</NoWarn>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Octokit" Version="4.0.1" />
+      <PackageReference Include="Spectre.Cli" Version="0.49.0" />
+    </ItemGroup>
+
 </Project>

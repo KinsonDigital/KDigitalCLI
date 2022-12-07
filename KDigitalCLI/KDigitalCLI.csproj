@@ -3,6 +3,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net7.0</TargetFramework>
+        <LangVersion>11.0</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <!--Update this for production and preview releases-->
@@ -33,8 +34,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Octokit" Version="4.0.1" />
-      <PackageReference Include="Spectre.Cli" Version="0.49.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Octokit" Version="4.0.3" />
+      <PackageReference Include="SimpleInjector" Version="5.4.1" />
+      <PackageReference Include="Spectre.Console" Version="0.45.0" />
+      <PackageReference Include="Spectre.Console.Cli" Version="0.45.0" />
+      <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="stylecop.json" />
     </ItemGroup>
 
 </Project>

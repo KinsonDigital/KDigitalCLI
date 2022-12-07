@@ -1,14 +1,20 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-
+using KDigitalCLI;
 using KDigitalCLI.Commands;
-using Spectre.Cli;
+using Spectre.Console.Cli;
 
-var app = new CommandApp();
+var app = new CommandApp(new ServiceContainer());
+// app.SetDefaultCommand<EmptyCommand>();
 
 app.Configure(config =>
 {
-    config.AddCommand<StartFeatureCommand>("start-feature")
+    config.AddCommand<CreateCommand>("create")
         .WithDescription("Interactively creates a regular or preview feature.")
-        .WithExample(new[] { "kd", "start-feature" });
+        .WithExample(new[] { "feature", "--regular" })
+        .WithExample(new[] { "feature", "--preview" });
 });
+
+app.Run(args);
+
+Console.ReadKey();

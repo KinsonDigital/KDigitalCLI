@@ -7,6 +7,8 @@ namespace KDigitalCLI;
 /// </summary>
 public static class ExtensionMethods
 {
+    private const char WinDirSeparatorChar = '\\';
+    private const char CrossPlatDirSeparatorChar = '/';
     private const char MatchNumbers = '#';
     private const char MatchAnything = '*';
 
@@ -30,6 +32,17 @@ public static class ExtensionMethods
 
         return isEqual;
     }
+
+    /// <summary>
+    /// Converts the given <paramref name="path"/> to a cross platform path.
+    /// </summary>
+    /// <param name="path">The file or directory path.</param>
+    /// <returns>The cross platform version of the <paramref name="path"/>.</returns>
+    /// <returns>
+    ///     This changes all '\' characters to '/' characters.
+    ///     The '/' directory separator is valid on Windows and Linux systems.
+    /// </returns>
+    public static string ToCrossPlatPath(this string path) => path.Replace(WinDirSeparatorChar, CrossPlatDirSeparatorChar);
 
     /// <summary>
     /// Returns a value indicating whether or not the given <paramref name="globbingPattern"/> contains a match

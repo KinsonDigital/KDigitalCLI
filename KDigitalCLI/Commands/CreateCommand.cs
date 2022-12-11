@@ -2,35 +2,18 @@
 // Copyright (c) KinsonDigital. All rights reserved.
 // </copyright>
 
-using KDigitalCLI.Settings;
-using Spectre.Console.Cli;
-
 namespace KDigitalCLI.Commands;
 
-public class CreateCommand : Command<CreateCommandSettings>
+using Spectre.Console.Cli;
+
+public class CreateCommand : Command
 {
-    private readonly IMyService myService;
-
-    public CreateCommand(IMyService myService)
+    public override int Execute(CommandContext context)
     {
-        this.myService = myService;
-    }
+        // TODO: Check if there are any remaining args and if not, throw error.
+        // Must have a 'feature' or 'profile' argument.
+        // Use context.RemainingArguments
 
-    public override int Execute(CommandContext context, CreateCommandSettings settings)
-    {
-        if (settings.Regular)
-        {
-            Console.WriteLine("Regular Feature");
-            return 0;
-        }
-
-        if (settings.Preview)
-        {
-            Console.WriteLine("Preview Feature");
-            return 0;
-        }
-
-        Console.WriteLine("Unknown!!!");
-        return 1;
+        return 0;
     }
 }

@@ -2,19 +2,32 @@
 
 using KDigitalCLI;
 using KDigitalCLI.Commands;
+using Octokit;
+using Octokit.Internal;
 using Spectre.Console.Cli;
 
 var app = new CommandApp(new ServiceContainer());
-// app.SetDefaultCommand<EmptyCommand>();
 
 app.Configure(config =>
 {
-    config.AddCommand<CreateCommand>("create")
-        .WithDescription("Interactively creates a regular or preview feature.")
-        .WithExample(new[] { "feature", "--regular" })
-        .WithExample(new[] { "feature", "--preview" });
+    config.AddBranch("create", create =>
+    {
+        create.AddCommand<CreateProfileCommand>("profile")
+            .WithDescription("Creates a new profile.")
+            .WithExample(new[] { "profile", "-n=MyProfile" })
+            .WithExample(new[] { "profile", "--name=MyProfile" });
+
+        create.AddCommand<CreateFeatureCommand>("feature")
+            .WithDescription("Creates a regular or preview feature.")
+            .WithExample(new[] { "feature", "-n=John", "-t=regular" })
+            .WithExample(new[] { "feature", "--name=John", "--type=preview" });
+    });
 });
 
-app.Run(args);
+var result = app.Run(args);
 
-Console.ReadKey();
+#if DEBUG
+Console.ReadLine();
+#endif
+
+return result;

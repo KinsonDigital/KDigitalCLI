@@ -31,5 +31,17 @@ public class ExtensionMethodsTests
         // Assert
         act.Should().Be(expected);
     }
+
+    [Theory]
+    [InlineData(@"C:\dir-1\dir-2", "C:/dir-1/dir-2")]
+    [InlineData(@"C:\dir-1\dir-2\", "C:/dir-1/dir-2/")]
+    public void ToCrossPlatPath_WhenInvoked_ReturnsCorrectResult(string path, string expected)
+    {
+        // Act
+        var actual = path.ToCrossPlatPath();
+
+        // Assert
+        actual.Should().Be(expected);
+    }
     #endregion
 }

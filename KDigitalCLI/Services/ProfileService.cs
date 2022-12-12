@@ -60,7 +60,7 @@ internal sealed class ProfileService : IProfileService
         var fileName = $"{name}{FileExtension}";
         var filePath = $"{this.fullProfilesDirPath}/{fileName}";
 
-        if (this.file.Exists(filePath) is false)
+        if (this.file.Exists(filePath))
         {
             throw new ProfileAlreadyExistsException($"The profile '{name}' already exists.");
         }

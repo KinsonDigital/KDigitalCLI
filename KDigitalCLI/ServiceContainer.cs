@@ -10,6 +10,7 @@ namespace KDigitalCLI;
 using System.IO.Abstractions;
 using Commands.Settings;
 using Factories;
+using Octokit;
 using Services;
 using Services.Interfaces;
 
@@ -25,18 +26,13 @@ internal sealed class ServiceContainer : ITypeRegistrar
 
     public ITypeResolver Build()
     {
-        SetupCommands();
+        SetupCommandSettings();
+        SetupServices();
 
         this.container.Register<IHttpClientFactory, HttpClientFactory>(Lifestyle.Singleton);
-        this.container.Register<IJsonService, JsonService>(Lifestyle.Singleton);
-        this.container.Register<IFindDirService, FindDirService>(Lifestyle.Singleton);
-        this.container.Register<ISecretService, SecretService>(Lifestyle.Singleton);
         this.container.Register(() => FileSystem.File, Lifestyle.Singleton);
         this.container.Register(() => FileSystem.Directory, Lifestyle.Singleton);
         this.container.Register(() => FileSystem.Path, Lifestyle.Singleton);
-        this.container.Register(
-            () => new IssueService(this.container.GetInstance<IHttpClientFactory>().CreateIssueClient()),
-            Lifestyle.Singleton);
 
         this.container.Verify();
 
@@ -58,10 +54,26 @@ internal sealed class ServiceContainer : ITypeRegistrar
         this.container.Register(service, factory);
     }
 
-    private void SetupCommands()
+    private void SetupCommandSettings()
     {
         this.container.Register<CreateFeatureSettings>(Lifestyle.Singleton);
         this.container.Register<EmptyCommandSettings>(Lifestyle.Singleton);
         this.container.Register<CreateProfileSettings>(Lifestyle.Singleton);
+    }
+
+    private void SetupServices()
+    {
+        this.container.Register<IJsonService, JsonService>(Lifestyle.Singleton);
+        this.container.Register<IFindDirService, FindDirService>(Lifestyle.Singleton);
+        this.container.Register<IProfileService, ProfileService>();
+        this.container.Register<ISecretService, SecretService>(Lifestyle.Singleton);
+        this.container.Register<IRepoService>(
+            () => new RepoService(this.container.GetInstance<IHttpClientFactory>().CreateRepoClient()));
+        this.container.Register(
+            () => new IssueService(this.container.GetInstance<IHttpClientFactory>().CreateIssuesClient()),
+            Lifestyle.Singleton);
+        this.container.Register<IGitHubUserService>(
+            () => new GitHubUserService(this.container.GetInstance<IHttpClientFactory>().CreateUserClient()),
+            Lifestyle.Singleton);
     }
 }

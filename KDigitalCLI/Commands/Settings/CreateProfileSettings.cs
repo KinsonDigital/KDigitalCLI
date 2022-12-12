@@ -1,4 +1,4 @@
-﻿// <copyright file="CreateProfileCommandSettings.cs" company="KinsonDigital">
+﻿// <copyright file="CreateProfileSettings.cs" company="KinsonDigital">
 // Copyright (c) KinsonDigital. All rights reserved.
 // </copyright>
 

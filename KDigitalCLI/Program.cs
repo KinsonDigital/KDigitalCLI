@@ -2,8 +2,6 @@
 
 using KDigitalCLI;
 using KDigitalCLI.Commands;
-using Octokit;
-using Octokit.Internal;
 using Spectre.Console.Cli;
 
 var app = new CommandApp(new ServiceContainer());

@@ -12,6 +12,7 @@ public static class ExtensionMethods
     private const char MatchNumbers = '#';
     private const char MatchAnything = '*';
 
+
     /// <summary>
     /// Returns a value indicating whether or not the current <c>string</c> matches the given <paramref name="pattern"/>.
     /// </summary>

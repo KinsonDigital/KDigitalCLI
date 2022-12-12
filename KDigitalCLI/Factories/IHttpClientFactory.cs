@@ -17,5 +17,9 @@ internal interface IHttpClientFactory
     /// <returns>An <see cref="IGitHubClient"/>.</returns>
     IGitHubClient CreateGitHubClient();
 
-    IIssuesClient CreateIssueClient();
+    IUsersClient CreateUserClient();
+
+    IIssuesClient CreateIssuesClient();
+
+    IRepositoriesClient CreateRepoClient();
 }

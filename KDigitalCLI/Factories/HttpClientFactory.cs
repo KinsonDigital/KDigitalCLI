@@ -4,6 +4,7 @@
 
 namespace KDigitalCLI.Factories;
 
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Guards;
 using Octokit;
@@ -18,6 +19,8 @@ internal sealed class HttpClientFactory : IHttpClientFactory
     private const string SecretName = "GitHubApiToken";
     private readonly IGitHubClient githubClient;
     private IIssuesClient? issueClient;
+    private IUsersClient? userClient;
+    private IRepositoriesClient? repoClient;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="HttpClientFactory"/> class.
@@ -50,13 +53,11 @@ internal sealed class HttpClientFactory : IHttpClientFactory
     public IGitHubClient CreateGitHubClient() => this.githubClient;
 
     /// <inheritdoc/>
-    public IIssuesClient CreateIssueClient()
-    {
-        if (this.issueClient is null)
-        {
-            this.issueClient = this.githubClient.Issue;
-        }
+    public IIssuesClient CreateIssuesClient() => this.issueClient ??= this.githubClient.Issue;
 
-        return this.issueClient;
-    }
+    /// <inheritdoc/>
+    public IUsersClient CreateUserClient() => this.userClient ??= this.githubClient.User;
+
+    /// <inheritdoc/>
+    public IRepositoriesClient CreateRepoClient() => this.repoClient ??= this.githubClient.Repository;
 }

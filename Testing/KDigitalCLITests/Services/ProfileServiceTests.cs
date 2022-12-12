@@ -42,7 +42,7 @@ public class ProfileServiceTests
         this.mockDirectory.GetCurrentDirectory().Returns(AppDirPath);
 
         this.mockFile = Substitute.For<IFile>();
-        this.mockFile.Exists(Arg.Any<string>()).Returns(true);
+        this.mockFile.Exists(Arg.Any<string>()).Returns(false);
     }
 
     #region Constructor Tests
@@ -171,7 +171,7 @@ public class ProfileServiceTests
     public void CreateProfile_WhenProfileWithTheSameNameAlreadyExists_ThrowException()
     {
         // Arrange
-        this.mockFile.Exists(Arg.Any<string>()).Returns(false);
+        this.mockFile.Exists(Arg.Any<string>()).Returns(true);
 
         var sut = CreateSystemUnderTest();
 

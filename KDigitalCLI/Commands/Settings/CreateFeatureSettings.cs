@@ -1,4 +1,4 @@
-﻿// <copyright file="CreateFeatureCommandSettings.cs" company="KinsonDigital">
+﻿// <copyright file="CreateFeatureSettings.cs" company="KinsonDigital">
 // Copyright (c) KinsonDigital. All rights reserved.
 // </copyright>
 
